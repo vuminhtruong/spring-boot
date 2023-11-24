@@ -1,2 +1,16 @@
-package com.truongvu.springcore.common;public class TennisCoach {
+package com.truongvu.springcore.common;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class TennisCoach implements Coach{
+    public TennisCoach() {
+        System.out.println("In constructor: " + getClass().getSimpleName());
+    }
+
+    @Autowired
+    public String getDailyWorkOut() {
+        return "Practice backhand volley";
+    }
 }

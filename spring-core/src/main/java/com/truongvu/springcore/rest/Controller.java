@@ -2,6 +2,7 @@ package com.truongvu.springcore.rest;
 
 import com.truongvu.springcore.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,8 @@ public class Controller {
 //    }
 
     @Autowired
-    public void setCoach(Coach coach) {
+    public void setCoach(@Qualifier("cricketCoach") Coach coach) {
+        System.out.println("In constructor: " + getClass().getSimpleName());
         this.coach = coach;
     }
 
