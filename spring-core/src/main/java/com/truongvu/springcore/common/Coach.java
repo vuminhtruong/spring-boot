@@ -1,4 +1,4 @@
-package com.truongvu.springcore;
+package com.truongvu.springcore.common;
 
 public interface Coach {
     String getDailyWorkOut();

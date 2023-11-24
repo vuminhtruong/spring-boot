@@ -1,5 +1,6 @@
-package com.truongvu.springcore;
+package com.truongvu.springcore.rest;
 
+import com.truongvu.springcore.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,8 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     private Coach coach;
 
+//    @Autowired
+//    public Controller(Coach coach) {
+//        this.coach = coach;
+//    }
+
     @Autowired
-    public Controller(Coach coach) {
+    public void setCoach(Coach coach) {
         this.coach = coach;
     }
 
