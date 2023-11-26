@@ -17,8 +17,25 @@ public class SpringHibernateApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		return runner -> {
-			createStudent(studentDAO);
+//			createStudent(studentDAO);
+			readStudent(studentDAO);
 		};
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		System.out.println("Creating new student object ...");
+		Student tempStudent = new Student("Nam","Tran","test2@yahoo.com");
+
+		System.out.println("Saving the student ...");
+		studentDAO.save(tempStudent);
+
+		int id = tempStudent.getId();
+		System.out.println("Saved student. Generated id: " + id);
+
+		System.out.println("Retrieving student with id: " + id);
+		Student myStudent = studentDAO.findById(id);
+
+		System.out.println("Found the student: " + myStudent);
 	}
 
 	private void createStudent(StudentDAO studentDAO) {
@@ -30,5 +47,4 @@ public class SpringHibernateApplication {
 
 		System.out.println("Saved student. Generated id: " + tempStudent.getId());
 	}
-
 }
