@@ -44,11 +44,11 @@ public class Student {
         this.firstName = firstName;
     }
 
-    public String getLatName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLatName(String latName) {
+    public void setLastName(String latName) {
         this.lastName = latName;
     }
 
