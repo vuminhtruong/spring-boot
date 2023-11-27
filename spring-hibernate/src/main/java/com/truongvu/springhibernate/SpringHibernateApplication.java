@@ -23,9 +23,23 @@ public class SpringHibernateApplication {
 //			readStudent(studentDAO);
 //			queryForStudents(studentDAO);
 //			queryForStudentsByLastName(studentDAO);
+//			updateStudent(studentDAO);
+//			deleteStudent(studentDAO);
 
-			updateStudent(studentDAO);
+			deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students");
+		int numRowsDeleted = studentDAO.deleteAll();
+		System.out.println("Deleted row count: " + numRowsDeleted);
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int id = 3;
+		System.out.println("Deleting student id: " + id);
+		studentDAO.delete(id);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
