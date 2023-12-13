@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Company Home Page</title>
@@ -10,6 +10,24 @@
 </h2>
 <hr>
 <p>Welcome to company home page!</p>
+<hr>
+<p>
+<!--    display username-->
+    User: <span sec:authentication="principal.username"></span>
+    <br><br>
+<!--    display roles-->
+    Role(s): <span sec:authentication="principal.authorities"></span>
+</p>
+<hr>
+<p>
+    <a th:href="@{/leader}">Leadership Meeting</a>
+    (Only for Manager)
+</p>
+<p>
+    <a th:href="@{/system}">Admin Meeting</a>
+    (Only for Admin)
+</p>
+<hr>
 <form action="#" th:action="@{/logout}" method="post">
     <input type="submit" value="Logout" />
 </form>
