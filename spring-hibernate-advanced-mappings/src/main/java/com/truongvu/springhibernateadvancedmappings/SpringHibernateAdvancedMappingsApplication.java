@@ -19,8 +19,24 @@ public class SpringHibernateAdvancedMappingsApplication {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
 //			createInstructor(appDAO);
-			findInstructor(appDAO);
+//			findInstructor(appDAO);
+//			deleteInstructor(appDAO);
+			findInstructorDetail(appDAO);
 		};
+	}
+
+	private void findInstructorDetail(AppDAO appDAO) {
+		int id = 3;
+		InstructorDetail instructorDetail = appDAO.findInstructorDetailById(id);
+		System.out.println("Instructor Detail : " + instructorDetail);
+		System.out.println("Instructor : " + instructorDetail.getInstructor());
+	}
+
+	private void deleteInstructor(AppDAO appDAO) {
+		int theId = 1;
+		System.out.println("Deleting instructor id: " + theId);
+		appDAO.deleteInstructorById(theId);
+		System.out.println("Done!");
 	}
 
 	private void findInstructor(AppDAO appDAO) {

@@ -1,6 +1,7 @@
 package com.truongvu.springhibernateadvancedmappings.dao;
 
 import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
+import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,5 +24,17 @@ public class AppDAOImpl implements AppDAO{
     @Override
     public Instructor findInstructorById(int theID) {
         return entityManager.find(Instructor.class, theID);
+    }
+
+    @Override
+    @Transactional
+    public void deleteInstructorById(int theId) {
+        Instructor instructor = entityManager.find(Instructor.class, theId);
+        entityManager.remove(instructor);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int id) {
+        return entityManager.find(InstructorDetail.class, id);
     }
 }
