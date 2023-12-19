@@ -3,7 +3,7 @@ package com.truongvu.springhibernateadvancedmappings.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "íntructor")
+@Table(name = "instructor")
 public class Instructor {
 
     @Id
