@@ -1,6 +1,7 @@
 package com.truongvu.springhibernateadvancedmappings;
 
 import com.truongvu.springhibernateadvancedmappings.dao.AppDAO;
+import com.truongvu.springhibernateadvancedmappings.entity.Course;
 import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
 import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -18,12 +19,29 @@ public class SpringHibernateAdvancedMappingsApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			createInstructor(appDAO);
+//			createInstructor(appDAO);
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 //			findInstructorDetail(appDAO);
 //			deleteInstructorDetail(appDAO);
+			createInstructorWithCourse(appDAO);
 		};
+	}
+
+	private void createInstructorWithCourse(AppDAO appDAO) {
+		Instructor tempInstructor = new Instructor("Truong","Vu","test1@test.com");
+		InstructorDetail tempInstructorDetail = new InstructorDetail("youtube.com/sadffsd123","Football");
+		tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+		Course course1 = new Course("Java");
+		Course course2 = new Course("Devops");
+
+		tempInstructor.addCourse(course1);
+		tempInstructor.addCourse(course2);
+
+		System.out.println("Saving instructor: " + tempInstructor);
+		System.out.println("The courses: " + tempInstructor.getCourses());
+		appDAO.save(tempInstructor);
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
