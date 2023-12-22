@@ -1,10 +1,7 @@
 package com.truongvu.springhibernateadvancedmappings;
 
 import com.truongvu.springhibernateadvancedmappings.dao.AppDAO;
-import com.truongvu.springhibernateadvancedmappings.entity.Course;
-import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
-import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
-import com.truongvu.springhibernateadvancedmappings.entity.Review;
+import com.truongvu.springhibernateadvancedmappings.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,8 +34,23 @@ public class SpringHibernateAdvancedMappingsApplication {
 //			deleteCourse(appDAO);
 //			createCourseAndReview(appDAO);
 //			retrieveCourseAndReviews(appDAO);
-			deleteCourseAndReviews(appDAO);
+//			deleteCourseAndReviews(appDAO);
+			createCourseAndStudent(appDAO);
 		};
+	}
+
+	private void createCourseAndStudent(AppDAO appDAO) {
+		Course course = new Course("Flutter");
+		Student student1 = new Student("John","Hazard","test1@test1.com");
+		Student student2 = new Student("Harry","Muller","test2@test2.com");
+
+		course.addStudent(student1);
+		course.addStudent(student2);
+
+		System.out.println("Saving the course: " + course);
+		System.out.println("Students: " + course.getStudents());
+
+		appDAO.save(course);
 	}
 
 	private void deleteCourseAndReviews(AppDAO appDAO) {
