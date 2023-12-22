@@ -1,11 +1,15 @@
 package com.truongvu.springhibernateadvancedmappings.dao;
 
+import com.truongvu.springhibernateadvancedmappings.entity.Course;
 import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
 import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class AppDAOImpl implements AppDAO{
@@ -43,5 +47,18 @@ public class AppDAOImpl implements AppDAO{
     public void deleteInstructorDetailById(int id) {
         InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, id);
         entityManager.remove(instructorDetail);
+    }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int id) {
+        TypedQuery<Course> query = entityManager.createQuery(
+                "from Course where instructor.id = :id", Course.class
+        );
+
+        query.setParameter("id", id);
+
+        List<Course> courses = query.getResultList();
+
+        return courses;
     }
 }

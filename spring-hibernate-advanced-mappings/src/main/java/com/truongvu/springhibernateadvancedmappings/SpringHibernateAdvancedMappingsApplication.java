@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class SpringHibernateAdvancedMappingsApplication {
 
@@ -25,11 +27,23 @@ public class SpringHibernateAdvancedMappingsApplication {
 //			findInstructorDetail(appDAO);
 //			deleteInstructorDetail(appDAO);
 //			createInstructorWithCourse(appDAO);
-            findInstructorWithCourses(appDAO);
+//          findInstructorWithCourses(appDAO);
+			findCoursesForInstructor(appDAO);
 		};
 	}
 
-    private void findInstructorWithCourses(AppDAO appDAO) {
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor id: " + id);
+		Instructor instructor = appDAO.findInstructorById(id);
+		System.out.println("Instructor: " + instructor);
+		System.out.println("Finding courses for instructor id: " + id);
+		List<Course> courses = appDAO.findCoursesByInstructorId(id);
+		instructor.setCourses(courses);
+		System.out.println("Courses: " + instructor.getCourses());
+	}
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
         int id = 1;
         System.out.println("Finding instructor id: " + id);
         Instructor instructor = appDAO.findInstructorById(id);

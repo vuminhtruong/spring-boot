@@ -1,7 +1,10 @@
 package com.truongvu.springhibernateadvancedmappings.dao;
 
+import com.truongvu.springhibernateadvancedmappings.entity.Course;
 import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
 import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
+
+import java.util.List;
 
 public interface AppDAO {
     void save(Instructor instructor);
@@ -13,4 +16,6 @@ public interface AppDAO {
     InstructorDetail findInstructorDetailById(int id);
 
     void deleteInstructorDetailById(int id);
+
+    List<Course> findCoursesByInstructorId(int id);
 }
