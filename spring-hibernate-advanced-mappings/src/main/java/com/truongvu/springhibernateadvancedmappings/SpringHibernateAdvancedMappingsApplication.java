@@ -4,6 +4,7 @@ import com.truongvu.springhibernateadvancedmappings.dao.AppDAO;
 import com.truongvu.springhibernateadvancedmappings.entity.Course;
 import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
 import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
+import com.truongvu.springhibernateadvancedmappings.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,8 +34,21 @@ public class SpringHibernateAdvancedMappingsApplication {
 //			updateInstructor(appDAO);
 //			updateCourse(appDAO);
 //			deleteInstructor(appDAO);
-			deleteCourse(appDAO);
+//			deleteCourse(appDAO);
+			createCourseAndReview(appDAO);
 		};
+	}
+
+	private void createCourseAndReview(AppDAO appDAO) {
+		Course course = new Course("NodeJS");
+		course.addReview(new Review("Great..."));
+		course.addReview(new Review("Easy course"));
+
+		System.out.println("Saving the course");
+		System.out.println(course);
+		System.out.println(course.getReviews());
+
+		appDAO.save(course);
 	}
 
 	private void deleteCourse(AppDAO appDAO) {
