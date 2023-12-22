@@ -28,8 +28,17 @@ public class SpringHibernateAdvancedMappingsApplication {
 //			deleteInstructorDetail(appDAO);
 //			createInstructorWithCourse(appDAO);
 //          findInstructorWithCourses(appDAO);
-			findCoursesForInstructor(appDAO);
+//			findCoursesForInstructor(appDAO);
+			findInstructorWithCoursesJoinFetch(appDAO);
 		};
+	}
+
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor id: " + id);
+		Instructor instructor = appDAO.findInstructorByIdJoinFetch(id);
+		System.out.println("Instructor: " + instructor);
+		System.out.println("Courses: " +  instructor.getCourses());
 	}
 
 	private void findCoursesForInstructor(AppDAO appDAO) {
