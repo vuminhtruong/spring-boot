@@ -30,8 +30,18 @@ public class SpringHibernateAdvancedMappingsApplication {
 //          findInstructorWithCourses(appDAO);
 //			findCoursesForInstructor(appDAO);
 //			findInstructorWithCoursesJoinFetch(appDAO);
-			updateInstructor(appDAO);
+//			updateInstructor(appDAO);
+			updateCourse(appDAO);
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int id = 10;
+		System.out.println("Finding course id: " + id);
+		Course course = appDAO.findCourseById(id);
+		System.out.println("Updating course id: " + id);
+		course.setTitle("Kotlin");
+		appDAO.update(course);
 	}
 
 	private void updateInstructor(AppDAO appDAO) {
