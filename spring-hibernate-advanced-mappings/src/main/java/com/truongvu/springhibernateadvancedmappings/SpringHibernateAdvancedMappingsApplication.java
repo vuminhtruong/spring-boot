@@ -35,8 +35,16 @@ public class SpringHibernateAdvancedMappingsApplication {
 //			updateCourse(appDAO);
 //			deleteInstructor(appDAO);
 //			deleteCourse(appDAO);
-			createCourseAndReview(appDAO);
+//			createCourseAndReview(appDAO);
+			retrieveCourseAndReviews(appDAO);
 		};
+	}
+
+	private void retrieveCourseAndReviews(AppDAO appDAO) {
+		int id = 10;
+		Course course = appDAO.findCourseAndReviewsByCourseId(id);
+		System.out.println(course);
+		System.out.println(course.getReviews());
 	}
 
 	private void createCourseAndReview(AppDAO appDAO) {
