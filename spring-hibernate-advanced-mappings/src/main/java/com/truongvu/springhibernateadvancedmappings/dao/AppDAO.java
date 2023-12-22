@@ -3,6 +3,7 @@ package com.truongvu.springhibernateadvancedmappings.dao;
 import com.truongvu.springhibernateadvancedmappings.entity.Course;
 import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
 import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
+import com.truongvu.springhibernateadvancedmappings.entity.Student;
 
 import java.util.List;
 
@@ -33,5 +34,7 @@ public interface AppDAO {
 
     Course findCourseAndReviewsByCourseId(int id);
 
-    Course findCourseAndStudentByCourseId(int id);
+    Course findCourseAndStudentsByCourseId(int id);
+
+    Student findStudentAndCoursesByStudentId(int id);
 }

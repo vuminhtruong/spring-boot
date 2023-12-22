@@ -3,6 +3,7 @@ package com.truongvu.springhibernateadvancedmappings.dao;
 import com.truongvu.springhibernateadvancedmappings.entity.Course;
 import com.truongvu.springhibernateadvancedmappings.entity.Instructor;
 import com.truongvu.springhibernateadvancedmappings.entity.InstructorDetail;
+import com.truongvu.springhibernateadvancedmappings.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,7 +123,7 @@ public class AppDAOImpl implements AppDAO{
     }
 
     @Override
-    public Course findCourseAndStudentByCourseId(int id) {
+    public Course findCourseAndStudentsByCourseId(int id) {
         TypedQuery<Course> query = entityManager.createQuery(
                 "select c from Course c " + "join fetch c.students " +
                         "where c.id = :id", Course.class
@@ -132,6 +133,19 @@ public class AppDAOImpl implements AppDAO{
 
         Course course = query.getSingleResult();
         return course;
+    }
+
+    @Override
+    public Student findStudentAndCoursesByStudentId(int id) {
+        TypedQuery<Student> query = entityManager.createQuery(
+                "select s from Student s " + "join fetch s.courses " +
+                        "where s.id = :id", Student.class
+        );
+
+        query.setParameter("id", id);
+        Student student = query.getSingleResult();
+
+        return student;
     }
 
 }
